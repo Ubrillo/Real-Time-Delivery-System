@@ -4,7 +4,6 @@ import java.util.*;
 
 public class OrderList {
     private Map<String, Request> orderList;
-
     public OrderList(){
         //this.order = order;
         this.orderList = new LinkedHashMap<>();
@@ -22,19 +21,22 @@ public class OrderList {
     }
 
     public void removeOrderById(String Id){
-        orderList.remove(Id);
+        if (orderList.containsKey(Id)){
+            orderList.remove(Id);
+        }
     }
+    public int getSize(){
+        return orderList.size();
+    }
+
     public void removeOrderByObj(Request Order){
         //sorderList.rem
     }
 
-    public int getSize(){
-        return orderList.size();
-    }
     @Override
     public String toString() {
         return "OrderQueue{" +
-                "orderQueue=" + orderList +
+                "orderQueue=" +  orderList +
                 '}';
     }
 }

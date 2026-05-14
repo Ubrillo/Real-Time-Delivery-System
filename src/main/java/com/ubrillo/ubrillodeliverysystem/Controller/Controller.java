@@ -1,18 +1,34 @@
 package com.ubrillo.ubrillodeliverysystem.Controller;
 
+import com.ubrillo.ubrillodeliverysystem.Logic.OrderList;
 import com.ubrillo.ubrillodeliverysystem.Logic.Request;
 import com.ubrillo.ubrillodeliverysystem.Logic.RequestService;
 import com.ubrillo.ubrillodeliverysystem.Logic.newRequestResponse;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/uby-delivery")
+@RequestMapping
 public class Controller   {
     RequestService requestMan = new RequestService();
-    @PostMapping
+    OrderList orderList = new OrderList();
+
+    @PostMapping("api/v1/ub-delivery/create-request")
     public newRequestResponse requestReceiver(@RequestBody Request request){
-        Request new_request = requestMan.createRequest(request);
-        newRequestResponse response = new newRequestResponse(new_request);
+        Request order = requestMan.createRequest(request);
+        orderList.addOrder(order);
+
+        System.out.println(orderList.getSize());
+
+
+
+        newRequestResponse response = new newRequestResponse(order);
         return response;
+    }
+
+    @PostMapping("api/v1/ub-delivery/cancel-request")
+    public void cancelOrder(@RequestBody Request request){
+        String Id = request.getRequestId();
+        orderList.removeOrderById(Id);
+        System.out.println(orderList.getSize());
     }
 }

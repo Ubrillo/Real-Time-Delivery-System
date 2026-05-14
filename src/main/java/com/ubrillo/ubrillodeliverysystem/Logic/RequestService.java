@@ -1,11 +1,9 @@
 package com.ubrillo.ubrillodeliverysystem.Logic;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 public class RequestService {
-
     public RequestService(){}
     public Request createRequest(Request request){
         if (isValidRequest(request)){
@@ -39,5 +37,9 @@ public class RequestService {
         return "REQ-"+
                 System.currentTimeMillis()+"-"+
                 UUID.randomUUID().toString().substring(0,8).toUpperCase();
+    }
+
+    public void pushRequest(){
+
     }
 }
