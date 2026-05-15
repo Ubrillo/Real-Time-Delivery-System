@@ -59,7 +59,7 @@ public class DispatchQueue2nd implements Runnable {
         Queue<Request> zoneQueue = zoneQueues.get(zone);
         if (zoneQueue != null) {
             zoneQueue.add(order);
-            System.out.println("Delivery is out to  -> " + zone.toString());
+            System.out.println("Delivery is out to quit -> " + zone.toString());
         }
     }
 
