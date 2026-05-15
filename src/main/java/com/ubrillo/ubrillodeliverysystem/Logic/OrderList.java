@@ -1,16 +1,30 @@
 package com.ubrillo.ubrillodeliverysystem.Logic;
 
+import org.springframework.stereotype.Service;
+
 import java.util.*;
 
+@Service
 public class OrderList {
     private Map<String, Request> orderList;
     public OrderList(){
         //this.order = order;
-        this.orderList = new LinkedHashMap<>();
+        orderList = new LinkedHashMap<>();
     }
 
-    public void addOrder(Request order){
+    public synchronized void addOrder(Request order){
         orderList.put(order.getRequestId(), order);
+    }
+
+    public synchronized List<Request> getBatch(int size){
+        List<Request> batch = new ArrayList<>();
+        Iterator<Request> itr = orderList.values().iterator();
+        while(itr.hasNext() && batch.size() < size){
+            Request req = itr.next();
+            batch.add(req);
+            itr.remove();
+        }
+        return batch;
     }
 
     public Request getOrder(String Id){
@@ -25,7 +39,7 @@ public class OrderList {
             orderList.remove(Id);
         }
     }
-    public int getSize(){
+    public synchronized int getSize(){
         return orderList.size();
     }
 

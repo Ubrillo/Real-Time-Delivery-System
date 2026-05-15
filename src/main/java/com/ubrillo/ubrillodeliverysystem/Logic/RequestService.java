@@ -1,8 +1,11 @@
 package com.ubrillo.ubrillodeliverysystem.Logic;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+@Service
 public class RequestService {
     public RequestService(){}
     public Request createRequest(Request request){

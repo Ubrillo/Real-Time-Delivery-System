@@ -11,13 +11,14 @@ public class Request {
     private Location currentLocation;
     private Location deliveryLocation;
     private String time;
+    private Zone  deliveryZone;
 
     public Request(String customerName,
                    String pickupAdress, String deliveryAdress,
                    String pickupPostcode, String deliveryPostcode,
                    String requestId, String description,
                    Location currentLocation, Location deliveryLocation,
-                   String time) {
+                   String time, String zone) {
 
         this.customerName = customerName;
         this.pickupAdress = pickupAdress;
@@ -29,7 +30,7 @@ public class Request {
         this.currentLocation = currentLocation;
         this.deliveryLocation = deliveryLocation;
         this.time = time;
-        this.status = RequestStatus.WAITING;
+        this.status = RequestStatus.CREATED;
     }
 
     public String getCustomerName() {
@@ -118,6 +119,14 @@ public class Request {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public Zone getDeliveryZone() {
+        return deliveryZone;
+    }
+
+    public void setDeliveryZone(Zone deliveryZone) {
+        this.deliveryZone = deliveryZone;
     }
 
     @Override

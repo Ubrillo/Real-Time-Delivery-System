@@ -1,7 +1,7 @@
 package com.ubrillo.ubrillodeliverysystem.Logic;
 
 public enum Zone {
-    NORTHLONDON("northlondon"), SOUTHlONDON("southlondon"),
+    NORTHLONDON("northlondon"), SOUTHLONDON("southlondon"),
     WESTLONDON("westlondon"), EASTLONDON("eastlondon");
     private String zone;
     private  Zone(String st){zone = st;}
